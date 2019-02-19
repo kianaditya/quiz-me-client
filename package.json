@@ -17,7 +17,6 @@
     "cy:verify": "cypress verify",
     "cy:version": "cypress version",
     "cy:run": "cypress run",
-    "cy:run:record": "cypress run --record",
     "cy:open": "cypress open"
   },
   "eslintConfig": {
