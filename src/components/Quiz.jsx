@@ -6,17 +6,20 @@ export class Quiz extends Component {
     super();
     this.state = {
       quiz: [
-        {category: 'loading'}
+        {question: 'loading'}
       ]
     }
     this.get_quiz = this.get_quiz.bind(this)
   }
 
   async componentWillMount() {
+    let questions = [];
     const response = await this.get_quiz()
-    debugger;
+    response.data.data.results.forEach(question => {
+      questions.push(question);
+    })
     this.setState({
-      quiz: response.data.data.results
+      quiz: questions
     })
   }
 
@@ -26,9 +29,14 @@ export class Quiz extends Component {
   }
 
   render() {
+    let questionList = []
+    this.state.quiz.map(question => {
+      debugger;
+      questionList.push(question.question)
+    })
     return (
       <div>
-        {this.state.quiz[0].category}
+        {questionList}
       </div>
     )
   }
