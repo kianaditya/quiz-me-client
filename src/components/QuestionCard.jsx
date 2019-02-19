@@ -1,17 +1,24 @@
 import React from 'react'
 
 function QuestionCard(props) {
-
-    let answer = props.question.incorrect_answers.map(answer => 
-        <p>{answer}</p>
-    )
+    let allanswers = props.question.incorrect_answers
     let random =Math.floor(Math.random() * (3));
-    answer.splice(random,0,props.question.correct_answer)
+    allanswers.splice(random,0,props.question.correct_answer)
+    let answers = allanswers.map(answer => 
+        <button style={{width: '33%'}} className='btn btn-info p-2 m-2'>{answer}</button>
+    )
   return (
-    <div>
-        <h1>{props.question.category}</h1>
-        <p>{props.question.question}</p>
-            {answer}
+    <div id={props.id} className='border rounded bg-light m-4 container'>
+    <div className='row'>
+      <div className='col'>
+        <h4 className='m-2'>Question {props.id}: </h4>
+        <h4 className='m-2'>{props.question.question}</h4>
+        <h6 className='m-2'>Category: {props.question.category}</h6>
+      </div>
+        <div className='col'>
+              {answers}
+        </div>
+    </div>
     </div>
   )
 }

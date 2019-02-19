@@ -35,11 +35,16 @@ export class Quiz extends Component {
   }
 
   render () {
-    let questionList = this.state.quiz.map(question => {
-      return <QuestionCard question={question} />
+    let quiz = this.state.quiz
+    let questionList = quiz.map(question => { 
+      return <QuestionCard question={question} id={quiz.indexOf(question) + 1} />
     })
 
-    return (<div>{questionList}</div>)
+    return (
+      <div className='container'>
+            {questionList}
+      </div>
+    )
   }
 }
 
