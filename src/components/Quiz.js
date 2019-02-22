@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import QuestionCard from './QuestionCard'
+import ReactCountdownClock from 'react-countdown-clock'
 
 class Quiz extends Component {
     state = {
@@ -9,7 +10,8 @@ class Quiz extends Component {
           question: '',
           category: '',
           correct_answer: '',
-          incorrect_answers: ['']
+          incorrect_answers: [''],
+          displayQuiz: true
       }
       ]
     }
@@ -38,6 +40,13 @@ class Quiz extends Component {
 
     return (
       <div className='container'>
+      <div>
+      <ReactCountdownClock seconds={60}
+                      color="blue"
+                      alpha={0.9}
+                      size={100}
+                      onComplete={() => this.setState({displayQuiz: false})} />
+      </div>
             {questionList}
       </div>
     )
