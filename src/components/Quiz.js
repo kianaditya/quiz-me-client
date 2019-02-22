@@ -13,7 +13,8 @@ class Quiz extends Component {
           incorrect_answers: ['']
       }
       ],
-      displayQuiz: true
+      displayQuiz: true,
+      finalScore: 0
     }
 
   componentWillMount = async () => {
@@ -27,6 +28,14 @@ class Quiz extends Component {
     })
   }
 
+  calculateScore = (event) => {
+    let finalScore = this.state.finalScore;
+    finalScore = (event.target.name === event.target.id) ? finalScore + 1 : finalScore + 0
+    this.setState({
+      finalScore: finalScore
+    })
+  }
+
   getQuiz = async () => {
     const url = 'https://quiz-me-api.herokuapp.com/api/quiz'
     return await axios.get(url)
@@ -35,7 +44,7 @@ class Quiz extends Component {
   render () {
     let quiz = this.state.quiz
     let questionList = quiz.map(question => { 
-      return <QuestionCard question={question} id={quiz.indexOf(question) + 1} />
+      return <QuestionCard question={question} id={quiz.indexOf(question) + 1} calculateScore={this.calculateScore} />
     })
 
     return (
@@ -54,7 +63,7 @@ class Quiz extends Component {
           :
           <div className='d-flex justify-content-center'>
             <h1 className='border rounded-pill bg-info m-4 p-4 text-center text-white w-50'>
-              Time is up!
+              Time is up! Your score is {this.state.finalScore}
             </h1>          
           </div> 
           }

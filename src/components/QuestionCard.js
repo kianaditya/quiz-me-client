@@ -5,7 +5,7 @@ const QuestionCard = (props) => {
     let random = Math.floor(Math.random() * (3));
     allanswers.splice(random,0,props.question.correct_answer)
     let answers = allanswers.map(answer => 
-        <button style={{width: '33%'}} className='btn btn-info p-2 m-2'>{answer}</button>
+        <button name = {answer} onClick = {(event) => props.calculateScore(event)} id={props.question.correct_answer} style={{width: '33%'}} className='btn btn-info p-2 m-2'>{answer}</button>
     )
   return (
     <div id={props.id} className='border rounded bg-light m-4 container'>
