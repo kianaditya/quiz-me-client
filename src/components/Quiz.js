@@ -43,7 +43,7 @@ class Quiz extends Component {
         {this.state.displayQuiz ?  
           <div>
             <ReactCountdownClock 
-            seconds={60}
+            seconds={10}
             color="blue"
             alpha={0.9}
             size={100}
@@ -51,9 +51,14 @@ class Quiz extends Component {
             />
             {questionList}
           </div> 
-          : 
-          <h3>Time is up!</h3>}
-        </div>
+          :
+          <div className='d-flex justify-content-center'>
+            <h1 className='border rounded-pill bg-info m-4 p-4 text-center text-white w-50'>
+              Time is up!
+            </h1>          
+          </div> 
+          }
+        </div> 
     )
   }
 }
