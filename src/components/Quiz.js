@@ -10,10 +10,10 @@ class Quiz extends Component {
           question: '',
           category: '',
           correct_answer: '',
-          incorrect_answers: [''],
-          displayQuiz: true
+          incorrect_answers: ['']
       }
-      ]
+      ],
+      displayQuiz: true
     }
 
   componentWillMount = async () => {
@@ -40,17 +40,22 @@ class Quiz extends Component {
 
     return (
       <div className='container'>
-      <div>
-      <ReactCountdownClock seconds={60}
-                      color="blue"
-                      alpha={0.9}
-                      size={100}
-                      onComplete={() => this.setState({displayQuiz: false})} />
-      </div>
+        {this.state.displayQuiz ?  
+          <div>
+            <ReactCountdownClock 
+            seconds={60}
+            color="blue"
+            alpha={0.9}
+            size={100}
+            onComplete={() => this.setState({displayQuiz: false})} 
+            />
             {questionList}
-      </div>
+          </div> 
+          : 
+          <h3>Time is up!</h3>}
+        </div>
     )
   }
 }
 
-export default Quiz
+export default Quiz;
