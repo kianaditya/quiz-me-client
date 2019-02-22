@@ -2,10 +2,8 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import QuestionCard from './QuestionCard'
 
-export class Quiz extends Component {
-  constructor () {
-    super()
-    this.state = {
+class Quiz extends Component {
+    state = {
       quiz: [
         { 
           question: '',
@@ -15,12 +13,10 @@ export class Quiz extends Component {
       }
       ]
     }
-    this.get_quiz = this.get_quiz.bind(this)
-  }
 
-  async componentWillMount () {
+  componentWillMount = async () => {
     let questions = []
-    const response = await this.get_quiz()
+    const response = await this.getQuiz()
     response.data.data.results.forEach(question => {
       questions.push(question)
     })
@@ -29,7 +25,7 @@ export class Quiz extends Component {
     })
   }
 
-  async get_quiz () {
+  getQuiz = async () => {
     const url = 'https://quiz-me-api.herokuapp.com/api/quiz'
     return await axios.get(url)
   }
